@@ -15,10 +15,16 @@
 
     $author->read_single();
     
+    if($author->author != NULL){
     $author_arr = array(
     'id' => $author->id,
     'author' => $author->author
     );
 
     print_r(json_encode($author_arr));
+    } else{
+        echo json_encode(
+            array('message' => 'No Authors Found')
+        );
+    }
 ?>

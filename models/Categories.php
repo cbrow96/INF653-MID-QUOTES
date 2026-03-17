@@ -31,8 +31,10 @@
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $this->id = $row['id'];
-            $this->author = $row['category'];
+            if(isset($row['id'])&& isset($row['category'])){
+                $this->id = $row['id'];
+                $this->author = $row['category'];
+            }
         }
         
         public function create() {
