@@ -17,9 +17,8 @@
 
 
     $author->id = isset($data->id) ? $data->id : NULL;
-    $author->author = isset($data->author) ? $data->author : NULL;
 
-    if(($author->id != NULL) && ($author->author != NULL)){
+    if($author->id != NULL){
         if($author->delete()){
                 $author_arr = array(
                     'id' => $author->id

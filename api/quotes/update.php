@@ -44,6 +44,12 @@
         exit();
     }
 
+    $quote->read_single();
+    if(!$quote->quote){
+        echo json_encode(array('message' => 'No Quotes Found'));
+        exit();
+    }
+
     if($quote->update()){
         $quote_arr = array(
             'id'=> $quote->id,
