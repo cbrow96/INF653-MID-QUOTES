@@ -15,16 +15,20 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $category->id = $data->id;
-    $category->category = $data->category;
+    $category->id = isset($data->id) ? $data->id : NULL;
+    $category->id = isset($data->category) ? $data->category : NULL;
 
-    if($category->update()){
-        echo json_encode(
-            array('message' => 'Category Updated')
-        );
+    if(($category->id != NULL) && ($category->id != NULL)){
+        if($category->update()){
+            echo json_encode(
+                array(
+                    'id' => $category->id,
+                    'author' => $category->category
+                ));
+        }
     }else{
         echo json_encode(
-            array('message' => 'Category Not Updated')
+            array('message' => 'Missing Required Parameters')
         );
     }
 ?>
