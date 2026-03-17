@@ -39,7 +39,7 @@ RUN echo "Listen 0.0.0.0:5342" >> /etc/apache2/apache2.conf
 # ENV VARIABLE_NAME=value
 
 # Expose port 80 to allow incoming connections to the container
-EXPOSE 5342
+EXPOSE 5432
 
 # By default, Apache is started automatically. You can change or customize the startup command if necessary.
 # CMD ["apache2-foreground"]
