@@ -20,12 +20,19 @@
     if($author->author != NULL){
         if($author->create()){
 
+<<<<<<< HEAD
             $author_arr = array(
                 'id'=> $author->id,
                 'author'=> $author->author
             );
+=======
+        $author_arr = array(
+            'id'=> $author->id,
+            'author'=> $author->author
+        )
+>>>>>>> parent of cbd7e73 (create error handling)
 
-            print_r(json_encode($author_arr));
+        print_r(json_encode($author_arr));
         }
     }else{
         echo json_encode(
