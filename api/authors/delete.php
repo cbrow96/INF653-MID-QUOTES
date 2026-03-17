@@ -15,15 +15,21 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $author->id = $data->id;
 
-    if($author->delete()){
-        echo json_encode(
-            array('message' => 'Author Deleted')
-        );
+    $author->id = isset($data->id) ? $data->id : NULL;
+    $author->author = isset($data->author) ? $data->author : NULL;
+
+    if(($author->id != NULL) && ($author->author != NULL)){
+        if($author->delete()){
+                $author_arr = array(
+                    'id' => $author->id
+                );
+            
+                print_r(json_encode($author_arr));
+        }
     }else{
         echo json_encode(
-            array('message' => 'Author Not deleted')
+            array('message' => 'Missing Required Parameters')
         );
     }
 ?>

@@ -15,15 +15,20 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $category->id = $data->id;
+    $category->id = isset($data->id) ? $data->id : NULL;
+    $category->category = isset($data->category) ? $data->category : NULL;
 
-    if($category->delete()){
-        echo json_encode(
-            array('message' => 'Category Deleted')
-        );
+    if(($category->id != NULL) && ($category->category != NULL)){
+        if($category->delete()){
+                $category_arr = array(
+                    'id' => $category->id
+                );
+            
+                print_r(json_encode($category_arr));
+        }
     }else{
         echo json_encode(
-            array('message' => 'Category Not Deleted')
+            array('message' => 'Missing Required Parameters')
         );
     }
 ?>
