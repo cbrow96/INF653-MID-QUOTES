@@ -17,11 +17,11 @@
     
     if($category->category != NULL){
         $category_arr = array(
-        'id' => $category->id,
-        'category' => $category->author
+            'id' => $category->id,
+            'category' => $category->category
         );
 
-    print_r(json_encode($category_arr));
+        print_r(json_encode($category_arr));
     }  else{
         echo json_encode(
             array('message' => 'category_id Not Found')

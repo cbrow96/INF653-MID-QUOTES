@@ -15,15 +15,20 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $quote->id = $data->id;
+    $quote->id = isset($data->id) ? $data->id : NULL;
 
-    if($quote->delete()){
-        echo json_encode(
-            array('message' => 'Quote Deleted')
-        );
+    if(($quote->id != NULL)){
+        if($quote->delete()){
+                $quote_arr = array(
+                    'id' => $quote->id
+                );
+            
+                print_r(json_encode($quote_arr));
+        }
     }else{
         echo json_encode(
-            array('message' => 'Quote Not Deleted')
+            array('message' => 'Missing Required Parameters')
         );
     }
+
 ?>
