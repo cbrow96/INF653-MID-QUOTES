@@ -19,7 +19,7 @@
     $quote->category_id = isset($data->category_id) ? $data->category_id : NULL;
     $quote->author_id = isset($data->author_id) ? $data->author_id : NULL;
 
-    if(($quote->quote != NULL) && ($quote->category_id != NULL) && ($quote->author_id != NULL)){
+    if(($quote->quote != NULL) && ($quote->category_id) && ($data->author_id)){
         if($quote->create()){
             $quote_arr = array(
                 'id'=> $quote->id,

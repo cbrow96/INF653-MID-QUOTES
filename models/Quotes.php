@@ -46,13 +46,8 @@
             foreach($id_array as $key => $value){
                 $stmt->bindValue($key, $value);
             }
-
-            if($stmt->execute();){
-                return true;
-            }
-
-            printf("Error: %s.\n", stmt->error);
-            return false;
+            $stmt->execute();
+            return $stmt;
         }
 
         public function read_single() {

@@ -20,10 +20,10 @@
     if($author->author != NULL){
         if($author->create()){
 
-            $author_arr = array(
-                'id'=> $author->id,
-                'author'=> $author->author
-            )
+        $author_arr = array(
+            'id'=> $author->id,
+            'author'=> $author->author
+        )
 
         print_r(json_encode($author_arr));
         }

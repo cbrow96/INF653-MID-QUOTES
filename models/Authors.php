@@ -46,7 +46,7 @@
             $stmt->bindParam(':author', $this->author);
 
             if($stmt->execute()){
-                return $stmt->fetch()["id"];
+                return true;
             }
 
             printf("Error: %s.\n", $stmt->error);
