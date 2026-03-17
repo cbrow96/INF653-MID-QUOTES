@@ -16,9 +16,8 @@
     $data = json_decode(file_get_contents("php://input"));
 
     $category->id = isset($data->id) ? $data->id : NULL;
-    $category->category = isset($data->category) ? $data->category : NULL;
 
-    if(($category->id != NULL) && ($category->category != NULL)){
+    if($category->id != NULL){
         if($category->delete()){
                 $category_arr = array(
                     'id' => $category->id
