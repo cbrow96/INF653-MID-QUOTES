@@ -45,7 +45,7 @@
     }
 
     $quote->read_single();
-    if(!$quote->quote){
+    if($quote->quote == NULL){
         echo json_encode(array('message' => 'No Quotes Found'));
         exit();
     }
