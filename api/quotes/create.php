@@ -26,9 +26,9 @@
         exit();
     }
 
-    $quote->quote = isset($data->quote) ? $data->quote : NULL;
-    $quote->category_id = isset($data->category_id) ? $data->category_id : NULL;
-    $quote->author_id = isset($data->author_id) ? $data->author_id : NULL;
+    $quote->quote = $data->quote;
+    $quote->category_id = $data->category_id;
+    $quote->author_id = $data->author_id;
 
     $author->id = $data->author_id;
     $category->id = $data->category_id;
