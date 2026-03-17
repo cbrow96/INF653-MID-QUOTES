@@ -31,8 +31,19 @@
             print_r(json_encode($quote_arr));
         }
     }else{
-        echo json_encode(
-            array('message' => 'Missing Required Parameters')
-        );
+        if($quote->author_id == NULL){
+            echo json_encode(
+                array('message' => 'category_id Not Found')
+            );
+        }
+        else if($quote->category_id == NULL){
+            echo json_encode(
+                array('message' => 'category_id Not Found')
+            );
+        }else{
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+        }
     }
 ?>
