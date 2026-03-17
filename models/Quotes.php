@@ -71,13 +71,17 @@
 
             $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if(isset($row['id'])&& isset($row['quote'])){
+            if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            
+            if(isset($row['id']) && isset($row['quote'])){
                 $this->id = $row['id'];
                 $this->quote = $row['quote'];
                 $this->author = $row['author'];
                 $this->category = $row['category'];
+            }
+            return true;
+            }else{
+                return false;
             }
         }
 
