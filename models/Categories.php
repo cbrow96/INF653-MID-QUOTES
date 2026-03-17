@@ -31,9 +31,9 @@
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if(isset($row['id'])&& isset($row['category'])){
+            if(isset($row['id']) && isset($row['category'])){
                 $this->id = $row['id'];
-                $this->author = $row['category'];
+                $this->category = $row['category'];
             }
         }
         
