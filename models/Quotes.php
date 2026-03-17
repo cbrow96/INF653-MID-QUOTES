@@ -72,14 +72,12 @@
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if(isset($row['id']) && isset($row['quote']) && ($row)){
+
+            if(isset($row['id']) && isset($row['quote'])){
                 $this->id = $row['id'];
                 $this->quote = $row['quote'];
                 $this->author = $row['author'];
                 $this->category = $row['category'];
-            }else{
-                $quote->quote = NULL;
             }
         }
 
@@ -110,6 +108,7 @@
 
         public function update() {
             $query = 'UPDATE ' . $this->table. ' SET 
+                id = :id,
                 quote = :quote,
                 author_id = :author_id,
                 category_id = :category_id
@@ -127,12 +126,21 @@
              $stmt->bindParam(':category_id', $this->category_id);
              $stmt->bindParam(':id', $this->id);
 
-            if($stmt->execute()){
-                return true;
-            }
+             //Execute query
+             if($stmt->execute()){
+                if ($stmt->rowCount()==0){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+             } else {
 
-            printf("Error: %s.\n", $stmt->error);
-            return false;
+             printf("Error: %s.\n", $stmt->error);
+
+             return false;
+
+            }
         }
 
         public function delete() {
