@@ -15,17 +15,22 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $quote->quote = $data->quote;
-    $quote->category_id = $data->category_id;
-    $quote->author_id = $data->author_id;
+    $quote->quote = isset($data->quote) ? $data->quote : NULL;
+    $quote->category_id = isset($data->category_id) ? $data->category_id : NULL;
+    $quote->author_id = isset($data->author_id) ? $data->author_id : NULL;
 
-    if($quote->create()){
-        echo json_encode(
-            array('message' => 'Quote Created')
-        );
+    if(($quote->quote != NULL) && ($quote->category_id) && ($data->author_id)){
+        if($quote->create()){
+            $quote_arr = array(
+                'id'=> $quote->id,
+                'quote'=> $quote->quote,
+                'author_id'=> $quote->author_id,
+                'category_id'=> $quote->category_id
+            );
+        }
     }else{
         echo json_encode(
-            array('message' => 'Quote Not Created')
+            array('message' => 'Missing Required Parameters')
         );
     }
 ?>
