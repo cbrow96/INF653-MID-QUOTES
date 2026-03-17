@@ -1,7 +1,7 @@
 <?php
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Mehtods: PUT');
+    header('Access-Control-Allow-Methods: PUT');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
@@ -16,15 +16,16 @@
     $data = json_decode(file_get_contents("php://input"));
 
     $category->id = isset($data->id) ? $data->id : NULL;
-    $category->id = isset($data->category) ? $data->category : NULL;
+    $category->category = isset($data->category) ? $data->category : NULL;
 
-    if(($category->id != NULL) && ($category->id != NULL)){
+    if(($category->id != NULL) && ($category->category != NULL)){
         if($category->update()){
-            echo json_encode(
-                array(
+                $category_arr = array(
                     'id' => $category->id,
-                    'author' => $category->category
-                ));
+                    'category' => $category->category
+                );
+            
+                print_r(json_encode($category_arr));
         }
     }else{
         echo json_encode(
