@@ -73,14 +73,10 @@
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($row){
-                $this->id = $row['id'];
-                $this->quote = $row['quote'];
-                $this->author = $row['author'];
-                $this->category = $row['category'];
-            }else{
-                return NULL;
-            }
+            $this->id = $row['id'];
+            $this->quote = $row['quote'];
+            $this->author = $row['author'];
+            $this->category = $row['category'];
         }
 
         public function create() {
