@@ -9,6 +9,7 @@ if ($method === 'OPTIONS') {
     exit();
 }
 
+    //check for request type and inde appropriate data handling file based on input
      if ($method === 'GET') 
      {
         try {
