@@ -9,9 +9,9 @@ if ($method === 'OPTIONS') {
     exit();
 }
 
-    //check for request type and inde appropriate data handling file based on input
-     if ($method === 'GET') 
-     {
+//check for request type and include appropriate data handling file based on input
+if ($method === 'GET') 
+    {
         try {
             if (isset($_GET['id']) ){
                 require_once 'read_single.php' ;
@@ -24,7 +24,7 @@ if ($method === 'OPTIONS') {
             echo("Required file not found!");
         
         }
-     }
+    }
      else if ($method === 'POST') {
         try {
             require_once 'create.php';
@@ -35,7 +35,7 @@ if ($method === 'OPTIONS') {
             echo("Required file not found!");
         
         }
-     }
+    }
      else if ($method === 'PUT') {
         try {
             require_once 'update.php';
@@ -46,7 +46,7 @@ if ($method === 'OPTIONS') {
             echo("Required file not found!");
         
         }
-     }
+    }
      else if ($method === 'DELETE') {
         try {
             require_once 'delete.php';
@@ -57,8 +57,8 @@ if ($method === 'OPTIONS') {
             echo("Required file not found!");
         
         }
-     }
+    }
      else{
-        echo ("No function requested");
-     }
+        echo ("No method requested");
+    }
 ?>

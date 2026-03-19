@@ -13,8 +13,9 @@
 
     $quote = new Quote($db);
 
-    $data = json_decode(file_get_contents("php://input"));
+    $data = json_decode(file_get_contents("php://input"));  //read and assign data
 
+    //check if id given, send message and exit if not
     if(!isset($data->id)){
         echo(json_encode(array('message' => 'Missing Required parameters')));
         exit();
@@ -22,6 +23,7 @@
 
     $quote->id = $data->id;
 
+    //attempt delete
     if($quote->delete()){
             $quote_arr = array(
                 'id' => $quote->id
@@ -29,6 +31,7 @@
         
             print_r(json_encode($quote_arr));
     }else{
+        //message if deletion fails
         echo json_encode(
             array('message' => 'No Quotes Found')
         );

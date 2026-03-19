@@ -90,7 +90,7 @@
 
             $stmt = $this->conn->prepare($query);
 
-            $this->id = htmlspecialchars(strip_tags($this->id));    //sanatize andd assign data
+            $this->id = htmlspecialchars(strip_tags($this->id));    //sanatize andd asign data
 
             $stmt->bindParam(':id', $this->id);     //bind data to query
 

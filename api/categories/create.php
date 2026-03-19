@@ -10,14 +10,16 @@
     $database = new Database();
     $db = $database->connect();
 
-
+    //create Category instance
     $category = new Category($db);
 
-    $data = json_decode(file_get_contents("php://input"));
+    $data = json_decode(file_get_contents("php://input"));  //read and asign data given
 
-    $category->category = isset($data->category) ? $data->category : NULL;
+    $category->category = isset($data->category) ? $data->category : NULL;  //if author given, assign. NULL otherwise
 
+    //check if category is given
     if($category->category != NULL){
+        //attempt create
         if($category->create()){
             $category_arr = array(
                 'id'=> $category->id,
@@ -27,6 +29,7 @@
             print_r(json_encode($category_arr));
         }
     }else{
+        //message if no params given.
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );
